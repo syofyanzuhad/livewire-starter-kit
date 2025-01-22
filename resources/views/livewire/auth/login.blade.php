@@ -34,9 +34,7 @@ new #[Layout('layouts.auth')] class extends Component {
     <form wire:submit="login" class="flex flex-col gap-6">
         <!-- Email Address -->
         <div class="grid gap-2">
-            <flux:input wire:model="form.email" label="{{ __('Email Address') }}" type="email" name="email"
-                class="focus:bg-pink-400" required autofocus autocomplete="email" />
-
+            <flux:input wire:model="form.email" label="{{ __('Email Address') }}" type="email" name="email" class="focus:bg-pink-400" required autofocus autocomplete="email" />
         </div>
 
         <!-- Password -->
