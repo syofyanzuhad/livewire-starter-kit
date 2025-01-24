@@ -16,3 +16,7 @@ Route::middleware('guest')->group(function () {
     //     ->name('password.reset');
     
 });
+
+
+Route::post('logout', App\Livewire\Actions\Logout::class)
+    ->name('logout');
