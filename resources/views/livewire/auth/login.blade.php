@@ -60,7 +60,7 @@ new #[Layout('layouts.auth')] class extends Component {
                 </a>
             @endif
 
-            <flux:button variant="primary" class="w-full">{{ __('Log In') }}</flux:button>
+            <flux:button variant="primary" type="submit" class="w-full">{{ __('Log In') }}</flux:button>
         </div>
     </form>
     <div class="text-center text-sm">

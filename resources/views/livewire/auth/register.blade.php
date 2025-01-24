@@ -14,7 +14,6 @@ new #[Layout('layouts.auth')] class extends Component
     public string $email = '';
     public string $password = '';
     public string $password_confirmation = '';
-
     /**
      * Handle an incoming registration request.
      */
@@ -66,7 +65,7 @@ new #[Layout('layouts.auth')] class extends Component
         </div>
 
         <div class="flex items-center justify-end">
-            <flux:button variant="primary" class="w-full">
+            <flux:button type="submit" variant="primary" class="w-full">
                 {{ __('Register') }}
             </flux:button>
         </div>
