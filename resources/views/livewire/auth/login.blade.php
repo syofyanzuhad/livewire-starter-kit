@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
 
-new #[Layout('layouts.auth')] class extends Component {
+new #[Layout('components.layouts.auth')] class extends Component {
     public LoginForm $form;
 
     /**
@@ -24,23 +24,28 @@ new #[Layout('layouts.auth')] class extends Component {
 }; ?>
 
 <div class="flex flex-col gap-6">
-    <div class="text-center w-full gap-2 flex flex-col">
-        <h1 class="text-xl font-bold dark:text-zinc-200">Log in to your account</h1>
-        <p class="text-center text-sm dark:text-zinc-400">Enter your email and password below to log in</p>
-    </div>
-    <!-- Session Status -->
-    {{-- <x-auth-session-status class="mb-4" :status="session('status')" /> --}}
+    
+    <x-auth-header 
+        title="Log in to your account"
+        description="Enter your email and password below to log in"
+    />
     
     <form wire:submit="login" class="flex flex-col gap-6">
         <!-- Email Address -->
-        <div class="grid gap-2">
-            <flux:input wire:model="form.email" label="{{ __('Email Address') }}" type="email" name="email" class="focus:bg-pink-400" required autofocus autocomplete="email" />
-        </div>
+            <flux:input wire:model="form.email" label="{{ __('Email address') }}" type="email" name="email" required autofocus autocomplete="email" />
+        
 
         <!-- Password -->
-        <div class="grid gap-2">
+        <div class="relative">
             <flux:input wire:model="form.password" label="{{ __('Password') }}" type="password" name="password" required
                 autocomplete="current-password" />
+            @if (Route::has('password.request'))
+                <x-text-link    
+                    class="absolute top-0 right-0"
+                    href="{{ route('password.request') }}">
+                    {{ __('Forgot your password?') }}
+                </x-text-link>
+            @endif
         </div>
 
         <!-- Remember Me -->
@@ -53,16 +58,10 @@ new #[Layout('layouts.auth')] class extends Component {
         </div>
 
         <div class="flex items-center justify-end">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    href="{{ route('password.request') }}" wire:navigate>
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
             <flux:button variant="primary" type="submit" class="w-full">{{ __('Log In') }}</flux:button>
         </div>
     </form>
     <div class="text-center text-sm">
-        Don't have an account? <a class="underline underline-offset-4" tabindex="4" href="/register">Sign up</a></div>
+        Don't have an account? <x-text-link href="{{ route('register') }}">Sign up</x-text-link>
+    </div>
 </div>

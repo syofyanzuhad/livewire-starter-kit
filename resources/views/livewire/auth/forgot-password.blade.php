@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Password;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
 
-new #[Layout('layouts.guest')] class extends Component
+new #[Layout('components.layouts.auth')] class extends Component
 {
     public string $email = '';
 
@@ -36,26 +36,26 @@ new #[Layout('layouts.guest')] class extends Component
     }
 }; ?>
 
-<div>
-    <div class="mb-4 text-sm text-gray-600">
-        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
-    </div>
+<div class="flex flex-col gap-6">
+
+    <x-auth-header 
+        title="Forgot Password"
+        description="Enter your email to receive a password reset link"
+    />
 
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <form wire:submit="sendPasswordResetLink">
+    <form wire:submit="sendPasswordResetLink" class="flex flex-col gap-6">
         <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input wire:model="email" id="email" class="block mt-1 w-full" type="email" name="email" required autofocus />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        <div class="grid gap-2">
+            <flux:input wire:model="form.email" label="{{ __('Email Address') }}" type="email" name="email" required autofocus />
+            {{-- <x-input-error :messages="$errors->get('email')" class="mt-2" /> --}}
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Email Password Reset Link') }}
-            </x-primary-button>
-        </div>
+        <flux:button variant="primary" type="submit" class="w-full">{{ __('Email password reset link') }}</flux:button>
     </form>
+    <div class="text-center text-sm">
+        Or, return to the <x-text-link href="{{ route('login') }}">login page</x-text-link>
+    </div>
 </div>

@@ -1,24 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <!-- Used to add dark mode right away, adding here prevents any flicker -->
-        <script>
-            if (typeof(Storage) !== "undefined") {
-                if(localStorage.getItem('dark_mode') && localStorage.getItem('dark_mode') == 'true'){
-                    document.documentElement.classList.add('dark');
-                }
-            }
-        </script>
-
-        <title>{{ $title ?? 'Laravel' }}</title>
-
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-        @fluxStyles
-
-        
+        @include('partials.head')
     </head>
     <body class="min-h-screen antialiased bg-white dark:bg-gradient-to-b dark:from-gray-950 dark:to-gray-900">
         <div class="flex min-h-svh flex-col items-center justify-center gap-6 bg-background p-6 md:p-10">

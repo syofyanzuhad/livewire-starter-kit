@@ -8,7 +8,7 @@ use Illuminate\Validation\Rules;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
 
-new #[Layout('layouts.auth')] class extends Component
+new #[Layout('components.layouts.auth')] class extends Component
 {
     public string $name = '';
     public string $email = '';
@@ -36,32 +36,33 @@ new #[Layout('layouts.auth')] class extends Component
 }; ?>
 
 <div class="flex flex-col gap-6">
-    <div class="text-center w-full gap-2 flex flex-col">
-        <h1 class="text-xl font-bold dark:text-zinc-200">Log in to your account</h1>
-        <p class="text-center text-sm dark:text-zinc-400">Enter your email and password below to log in</p>
-    </div>
+    <x-auth-header 
+        title="Create an account"
+        description="Enter your information below to create your account"
+    />
+
     <!-- Session Status -->
     {{-- <x-auth-session-status class="mb-4" :status="session('status')" /> --}}
 
     <form wire:submit="register" class="flex flex-col gap-6">
         <!-- Name -->
         <div class="grid gap-2">
-            <flux:input wire:model="name" id="name" class="block mt-1 w-full" label="{{ __('Name') }}" type="text" name="name" required autofocus autocomplete="name" />
+            <flux:input wire:model="name" id="name" label="{{ __('Name') }}" type="text" name="name" required autofocus autocomplete="name" />
         </div>
 
         <!-- Email Address -->
         <div class="grid gap-2">
-            <flux:input wire:model="email" id="email" class="block mt-1 w-full" label="{{ __('Email Address') }}" type="email" name="email" required autocomplete="email" />
+            <flux:input wire:model="email" id="email" label="{{ __('Email address') }}" type="email" name="email" required autocomplete="email" />
         </div>
 
         <!-- Password -->
         <div class="grid gap-2">
-            <flux:input wire:model="password" id="password" class="block mt-1 w-full" label="{{ __('Password') }}" type="password" name="password" required autocomplete="new-password" />
+            <flux:input wire:model="password" id="password" label="{{ __('Password') }}" type="password" name="password" required autocomplete="new-password" />
         </div>
 
         <!-- Confirm Password -->
         <div class="grid gap-2">
-            <flux:input wire:model="password_confirmation" id="password_confirmation" class="block mt-1 w-full" label="{{ __('Confirm Password') }}" type="password" name="password_confirmation" required autocomplete="new-password" />
+            <flux:input wire:model="password_confirmation" id="password_confirmation" label="{{ __('Confirm password') }}" type="password" name="password_confirmation" required autocomplete="new-password" />
         </div>
 
         <div class="flex items-center justify-end">
@@ -72,7 +73,7 @@ new #[Layout('layouts.auth')] class extends Component
     </form>
 
     <div class="text-center text-sm">
-        Already have an account? <a class="underline underline-offset-4" tabindex="4" href="{{ route('login') }}">Log in</a>
+        Already have an account? <x-text-link href="{{ route('login') }}">Log in</x-text-link>
     </div>
 
 </div>
