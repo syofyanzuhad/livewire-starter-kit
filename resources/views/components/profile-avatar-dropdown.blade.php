@@ -1,8 +1,8 @@
 @props([
-    'chevron' => true,
     'avatar' => null,
     'name' => null,
     'initials' => null,
+    'iconTrailing' => null,
 ])
 
 @php
@@ -16,7 +16,7 @@ $classes = Flux::classes()
 <button type="button" {{ $attributes->class($classes) }} data-flux-profile>
     <div class="shrink-0 size-8 bg-zinc-400 rounded-lg overflow-hidden">
         <?php if($initials): ?>
-        <span class="relative flex shrink-0 h-8 w-8 overflow-hidden rounded-lg text-sm"><span class="flex h-full w-full items-center justify-center rounded-lg bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white">{{ $initials }}</span></span>
+            <span class="relative flex shrink-0 h-8 w-8 overflow-hidden rounded-lg text-sm"><span class="flex h-full w-full items-center justify-center rounded-lg bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white">{{ $initials }}</span></span>
         <?php else: ?>
             <?php if (is_string($avatar)): ?>
                 <img src="{{ $avatar }}" />
@@ -32,9 +32,9 @@ $classes = Flux::classes()
         </span>
     <?php endif; ?>
 
-    <?php if ($chevron): ?>
+    <?php if ($iconTrailing): ?>
         <div class="shrink-0 ml-auto size-8 flex justify-center items-center">
-            <flux:icon.chevron-down variant="micro" class="text-zinc-400 dark:text-white/80 group-hover:text-zinc-800 group-hover:dark:text-white" />
+            <x-dynamic-component :component="'icon.' . $iconTrailing" variant="micro" class="text-zinc-400 dark:text-white/80 group-hover:text-zinc-800 group-hover:dark:text-white" />
         </div>
     <?php endif; ?>
 </button>
