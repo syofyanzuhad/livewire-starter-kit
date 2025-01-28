@@ -44,12 +44,12 @@ new #[Layout('components.layouts.auth')] class extends Component
     />
 
     <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+    <x-auth-session-status class="text-center" :status="session('status')" />
 
     <form wire:submit="sendPasswordResetLink" class="flex flex-col gap-6">
         <!-- Email Address -->
         <div class="grid gap-2">
-            <flux:input wire:model="form.email" label="{{ __('Email Address') }}" type="email" name="email" required autofocus />
+            <flux:input wire:model="email" label="{{ __('Email Address') }}" type="email" name="email" required autofocus />
             {{-- <x-input-error :messages="$errors->get('email')" class="mt-2" /> --}}
         </div>
 

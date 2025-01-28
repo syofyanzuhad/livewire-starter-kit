@@ -30,6 +30,9 @@ new #[Layout('components.layouts.auth')] class extends Component {
         description="Enter your email and password below to log in"
     />
     
+    <!-- Session Status -->
+    <x-auth-session-status class="text-center" :status="session('status')" />
+
     <form wire:submit="login" class="flex flex-col gap-6">
         <!-- Email Address -->
             <flux:input wire:model="form.email" label="{{ __('Email address') }}" type="email" name="email" required autofocus autocomplete="email" />

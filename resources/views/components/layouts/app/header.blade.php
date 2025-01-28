@@ -7,7 +7,7 @@
         <flux:header container class="bg-zinc-50 dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-700">
             <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
     
-            <a href="{{ route('dashboard') }}" class="flex space-x-2 items-center mr-5">
+            <a href="{{ route('dashboard') }}" class="flex space-x-2 items-center mr-5 lg:ml-0 ml-2">
                 <x-app-logo class="size-8" href="#"></x-app-logo>
             </a>
             
@@ -54,27 +54,21 @@
         <flux:sidebar stashable sticky class="lg:hidden bg-zinc-50 dark:bg-zinc-900 border-r border-zinc-200 dark:border-zinc-700">
             <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
     
-            <flux:brand href="#" logo="https://fluxui.dev/img/demo/logo.png" name="Acme Inc." class="px-2 dark:hidden" />
-            <flux:brand href="#" logo="https://fluxui.dev/img/demo/dark-mode-logo.png" name="Acme Inc." class="px-2 hidden dark:flex" />
+            <a href="{{ route('dashboard') }}" class="flex space-x-2 items-center ml-1">
+                <x-app-logo class="size-8" href="#"></x-app-logo>
+            </a>
     
             <flux:navlist variant="outline">
-                <flux:navlist.item icon="home" href="#" current>Home</flux:navlist.item>
-                <flux:navlist.item icon="inbox" badge="12" href="#">Inbox</flux:navlist.item>
-                <flux:navlist.item icon="document-text" href="#">Documents</flux:navlist.item>
-                <flux:navlist.item icon="calendar" href="#">Calendar</flux:navlist.item>
-    
-                <flux:navlist.group expandable heading="Favorites" class="max-lg:hidden">
-                    <flux:navlist.item href="#">Marketing site</flux:navlist.item>
-                    <flux:navlist.item href="#">Android app</flux:navlist.item>
-                    <flux:navlist.item href="#">Brand guidelines</flux:navlist.item>
+                <flux:navlist.group heading="Platform">
+                    <flux:navlist.item icon="layout-grid" href="{{ route('dashboard') }}" current>Dashboard</flux:navbar.item>
                 </flux:navlist.group>
             </flux:navlist>
     
             <flux:spacer />
     
             <flux:navlist variant="outline">
-                <flux:navlist.item icon="cog-6-tooth" href="#">Settings</flux:navlist.item>
-                <flux:navlist.item icon="information-circle" href="#">Help</flux:navlist.item>
+                <flux:navlist.item icon="folder-git-2" href="https://github.com/laravel/livewire-starter-kit" target="_blank">Repository</flux:navlist.item>
+                <flux:navlist.item icon="book-open-text" href="https://laravel.com/docs/starter-kits" target="_blank">Documentation</flux:navlist.item>
             </flux:navlist>
         </flux:sidebar>
     
