@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+@theme {
+    --color-laravel-red: #f53003;
+    --color-laravel-red-faded: #fff2f2;
+    --color-sand-light-6: #e3e3e0;
+    --color-sand-light-7: #dbdbd7;
+    --color-sand-light-8: #dbdbd7;
+    --color-sand-light-11: #706f6c;
+    --color-sand-light-12: #1b1b18;
+    --color-weaker: #fbfcfd;
+}
+
 @layer base {
     :root {
         --color-accent: var(--color-neutral-800);
@@ -16,13 +27,12 @@
     }
 }
 
-
 [data-flux-field] {
     @apply grid gap-2;
 }
 
 [data-flux-label] {
-    @apply  !mb-0 !leading-tight;
+    @apply !mb-0 !leading-tight;
 }
 
 input:focus[data-flux-control],
