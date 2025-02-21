@@ -44,9 +44,7 @@ class ProfileUpdateTest extends TestCase
         $response = Volt::test('settings.delete-user-form')
             ->call('deleteUser');
 
-        $response
-            ->assertHasNoErrors()
-            ->assertRedirect('/');
+        $response->assertRedirect('/');
 
         $this->assertNull($user->fresh());
     }

@@ -1,7 +1,7 @@
 <?php
 
-use App\Livewire\Actions\Logout;
-use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use Laravel\WorkOS\Http\Requests\AuthKitAccountDeletionRequest;
 use Livewire\Volt\Component;
 
 new class extends Component {
@@ -10,9 +10,11 @@ new class extends Component {
     /**
      * Delete the currently authenticated user.
      */
-    public function deleteUser(Logout $logout): void
+    public function deleteUser(AuthKitAccountDeletionRequest $request): void
     {
-        tap(Auth::user(), $logout(...))->delete();
+        $request->delete(
+            using: fn (User $user) => $user->delete()
+        );
 
         $this->redirect('/', navigate: true);
     }
