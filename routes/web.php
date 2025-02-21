@@ -1,14 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Laravel\WorkOS\Http\Middleware\ValidateSessionWithWorkOS;
 use Livewire\Volt\Volt;
 
 Route::get('/', function () {
     return view('welcome');
-})->name('home');
+});
 
 Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
+    ->middleware(['auth', ValidateSessionWithWorkOS::class])
     ->name('dashboard');
 
 Route::middleware(['auth'])->group(function () {

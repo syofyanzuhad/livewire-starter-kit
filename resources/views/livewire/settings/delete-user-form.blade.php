@@ -12,10 +12,6 @@ new class extends Component {
      */
     public function deleteUser(Logout $logout): void
     {
-        $this->validate([
-            'password' => ['required', 'string', 'current_password'],
-        ]);
-
         tap(Auth::user(), $logout(...))->delete();
 
         $this->redirect('/', navigate: true);
@@ -34,19 +30,15 @@ new class extends Component {
         </flux:button>
     </flux:modal.trigger>
 
-    <flux:modal name="confirm-user-deletion" :show="$errors->isNotEmpty()" focusable class="max-w-lg space-y-6">
+    <flux:modal name="confirm-user-deletion" :show="$errors->isNotEmpty()" focusable class="max-w-lg">
         <form wire:submit="deleteUser">
             <h2 class="text-lg font-medium text-gray-900">
                 {{ __('Are you sure you want to delete your account?') }}
             </h2>
 
             <p class="mt-1 text-sm text-gray-600">
-                {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
+                {{ __('Once your account is deleted, all of its resources and data will also be permanently deleted. Please confirm you would like to permanently delete your account.') }}
             </p>
-
-            <div class="mt-6">
-                <flux:input wire:model="password" id="password" label="{{ __('Password') }}" type="password" name="password" />
-            </div>
 
             <div class="mt-6 flex justify-end space-x-2">
                 <flux:modal.close>

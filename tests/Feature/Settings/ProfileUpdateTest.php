@@ -26,7 +26,6 @@ class ProfileUpdateTest extends TestCase
 
         $response = Volt::test('settings.profile')
             ->set('name', 'Test User')
-            ->set('email', 'test@example.com')
             ->call('updateProfileInformation');
 
         $response->assertHasNoErrors();
@@ -34,24 +33,6 @@ class ProfileUpdateTest extends TestCase
         $user->refresh();
 
         $this->assertEquals('Test User', $user->name);
-        $this->assertEquals('test@example.com', $user->email);
-        $this->assertNull($user->email_verified_at);
-    }
-
-    public function test_email_verification_status_is_unchanged_when_email_address_is_unchanged(): void
-    {
-        $user = User::factory()->create();
-
-        $this->actingAs($user);
-
-        $response = Volt::test('settings.profile')
-            ->set('name', 'Test User')
-            ->set('email', $user->email)
-            ->call('updateProfileInformation');
-
-        $response->assertHasNoErrors();
-
-        $this->assertNotNull($user->refresh()->email_verified_at);
     }
 
     public function test_user_can_delete_their_account(): void
@@ -61,7 +42,6 @@ class ProfileUpdateTest extends TestCase
         $this->actingAs($user);
 
         $response = Volt::test('settings.delete-user-form')
-            ->set('password', 'password')
             ->call('deleteUser');
 
         $response
@@ -69,21 +49,5 @@ class ProfileUpdateTest extends TestCase
             ->assertRedirect('/');
 
         $this->assertNull($user->fresh());
-        $this->assertFalse(auth()->check());
-    }
-
-    public function test_correct_password_must_be_provided_to_delete_account(): void
-    {
-        $user = User::factory()->create();
-
-        $this->actingAs($user);
-
-        $response = Volt::test('settings.delete-user-form')
-            ->set('password', 'wrong-password')
-            ->call('deleteUser');
-
-        $response->assertHasErrors(['password']);
-
-        $this->assertNotNull($user->fresh());
     }
 }
