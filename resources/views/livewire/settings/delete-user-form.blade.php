@@ -5,8 +5,6 @@ use Laravel\WorkOS\Http\Requests\AuthKitAccountDeletionRequest;
 use Livewire\Volt\Component;
 
 new class extends Component {
-    public string $password = '';
-
     /**
      * Delete the currently authenticated user.
      */
@@ -33,16 +31,16 @@ new class extends Component {
     </flux:modal.trigger>
 
     <flux:modal name="confirm-user-deletion" :show="$errors->isNotEmpty()" focusable class="max-w-lg">
-        <form wire:submit="deleteUser">
-            <h2 class="text-lg font-medium text-gray-900">
-                {{ __('Are you sure you want to delete your account?') }}
-            </h2>
+        <form wire:submit="deleteUser" class="space-y-6">
+            <div>
+                <flux:heading size="lg">{{ __('Are you sure you want to delete your account?') }}</flux:heading>
 
-            <p class="mt-1 text-sm text-gray-600">
-                {{ __('Once your account is deleted, all of its resources and data will also be permanently deleted. Please confirm you would like to permanently delete your account.') }}
-            </p>
+                <flux:subheading>
+                    {{ __('Once your account is deleted, all of its resources and data will also be permanently deleted. Please confirm you would like to permanently delete your account.') }}
+                </flux:subheading>
+            </div>
 
-            <div class="mt-6 flex justify-end space-x-2">
+            <div class="flex justify-end space-x-2">
                 <flux:modal.close>
                     <flux:button variant="filled">{{ __('Cancel') }}</flux:button>
                 </flux:modal.close>
