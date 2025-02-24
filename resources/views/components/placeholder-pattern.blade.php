@@ -4,8 +4,8 @@
 
 <svg {{ $attributes }} fill="none">
     <defs>
-        <pattern id="pattern-{{ $id }}" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
-            <path d="M-3 13 15-5M-5 5l18-18M-1 21 17 3"></path>
+        <pattern id="pattern-{{ $id }}" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
+            <path d="M-1 5L5 -1M3 9L8.5 3.5" stroke-width="0.5"></path>
         </pattern>
     </defs>
     <rect stroke="none" fill="url(#pattern-{{ $id }})" width="100%" height="100%"></rect>
